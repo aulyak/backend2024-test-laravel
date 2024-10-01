@@ -38,7 +38,11 @@
               <td>{{ $client->email }}</td>
               <td>
                 <a href="" class="btn btn-info">Edit</a>
-                <a href="" class="btn btn-danger">Delete</a>
+                <form action="{{ route('clients.destroy', $client->id) }}" method="post">
+                  @csrf
+                  @method('PUT')
+                  <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
               </td>
             </tr>
             @endforeach

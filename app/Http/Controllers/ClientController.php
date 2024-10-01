@@ -15,7 +15,7 @@ class ClientController extends Controller
     public function index()
     {
         //
-        $clients = Client::all();
+        $clients = Client::all()->whereNull('deleted_at');
 
         return view('clients.index', compact('clients'));
     }
@@ -77,6 +77,11 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $client = Client::find($id);
+
+        $client->deleted_at = now();
+        $client->save();
+
+        return redirect()->route('clients.index')->with('success', 'Client deleted successfully.');
     }
 }
