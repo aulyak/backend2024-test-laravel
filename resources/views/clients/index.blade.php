@@ -12,7 +12,7 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <a href="" class="btn btn-primary">Add Client</a>
+        <a href="{{route('clients.create')}}" class="btn btn-primary">Add Client</a>
       </div>
     </div>
     <div class="row">

@@ -33,7 +33,17 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'client_prefix' => 'required|max:4',
+            'address' => 'required',
+            'phone_number' => 'required',
+            'city' => 'required',
+        ]);
+
+
+        Client::create($request->all() + ['slug' => 'client-' . time()]);
+        return redirect()->route('clients.index')->with('success', 'Client created successfully.');
     }
 
     /**
